@@ -1,0 +1,88 @@
+﻿@using JobListing.Models
+@model List<Jobs>
+@{
+    ViewBag.Title = "JobSearch";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="site-section bg-light">
+    <div class="container">
+        <div class="row justify-content-start text-left mb-5">
+            <div class="col-md-9" data-aos="fade">
+                <h2 class="font-weight-bold text-black">Recent Jobs</h2>
+            </div>
+           
+        </div>
+        <div class="row" data-aos="fade">
+            @if(ViewBag.Message !=null )
+            {
+                <p style="color:red">@ViewBag.Message </p>
+            }
+            <div class="col-md-12">
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {<div class="job-post-item bg-white p-4 d-block d-md-flex align-items-center">
+                            <div class="mb-4 mb-md-0 mr-5">
+                                <div class="job-post-item-header d-flex align-items-center">
+                                    <h2 class="mr-3 text-black h4">@item.JobTitle</h2>
+                                    <div class="badge-wrap">
+                                        <span class="bg-primary text-white badge py-2 px-4">
+                                            @{
+                                                if (item.CategoryId == 1)
+                                                { @Html.Raw("Full Time");
+                                            }
+                                            else if (item.CategoryId == 2)
+                                            { @Html.Raw("Part Time");
+                                        }
+                                        else if (item.CategoryId == 3)
+                                        { @Html.Raw("Freelance");
+                                    }
+                                    else if (item.CategoryId == 4)
+                                    { @Html.Raw("Internship");
+                                }
+
+                                            }
+                                          
+
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="job-post-item-body d-block d-md-flex">
+                                    <div class="mr-3"><span class="fl-bigmug-line-portfolio23"></span> <a href="#">@item.CompanyName</a></div>
+                                    <div><span class="fl-bigmug-line-big104"></span> <span>@item.Location</span></div>
+                                </div>
+                            </div>
+                            <div class="ml-auto">
+                                <a href="#" class="btn btn-secondary rounded-circle btn-favorite text-gray-500"><span class="icon-heart"></span></a>
+                                <a href="/Job/JobDetail/@item.Id" class="btn btn-primary py-2">Apply Job</a>
+                            </div>
+                        </div>
+
+                    }
+                                                }
+
+                </div>
+            </div>
+                                              
+            <div class="row mt-5">
+                <div class="col-md-12 text-center">
+                    <div class="site-block-27">
+                        <ul>
+                            <li><a href="#"><i class="icon-keyboard_arrow_left h5"></i></a></li>
+                            <li class="active"><span>1</span></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#"><i class="icon-keyboard_arrow_right h5"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
